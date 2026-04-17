@@ -8,10 +8,16 @@ class AlertSystem:
     def __init__(self):
         """Initialize the alert system and audio mixer."""
         # Initialize pygame mixer for audio
-        pygame.mixer.init()
+        try:
+            pygame.mixer.init()
+            self.audio_enabled = True
+        except pygame.error as e:
+            print(f"Warning: Could not initialize audio mixer ({e}). Sound alerts will be disabled.")
+            self.audio_enabled = False
+
         self.alert_sound_path = os.path.join('alerts', 'alert.wav')
         
-        if os.path.exists(self.alert_sound_path):
+        if self.audio_enabled and os.path.exists(self.alert_sound_path):
             self.alert_sound = pygame.mixer.Sound(self.alert_sound_path)
         else:
             self.alert_sound = None
@@ -35,16 +41,16 @@ class AlertSystem:
 
     def play_alert(self):
         """Play an audio alert sound using pygame mixer."""
-        if self.alert_sound:
+        if self.audio_enabled and self.alert_sound:
             if not pygame.mixer.get_busy():
                 self.alert_sound.play()
         else:
             # Fallback if no sound file
-            print('\a', end='', flush=True) # System beep
+            pass # Removed system beep to avoid logs
 
     def stop_alert(self):
         """Stop the currently playing alert sound."""
-        if pygame.mixer.get_busy():
+        if self.audio_enabled and pygame.mixer.get_busy():
             pygame.mixer.stop()
 
     def get_display_message(self, status):
