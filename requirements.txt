@@ -1,0 +1,5 @@
+tensorflow
+opencv-python-headless
+mediapipe
+gradio
+numpy
