@@ -1,6 +1,7 @@
 tensorflow-cpu
 opencv-python-headless
 mediapipe
-gradio
-numpy
+gradio==4.44.1
+huggingface_hub==0.24.7
+numpy<2.0.0
 pygame

@@ -115,7 +115,7 @@ def predict(frame):
         return None, f"AI Error: {str(e)}"
 
 # Create Gradio Interface
-with gr.Blocks() as demo:
+with gr.Blocks(theme=gr.themes.Soft()) as demo:
     gr.Markdown("# 🚗 AlertDrive AI")
     gr.Markdown("### Real-time Drowsiness & Distraction Detection System")
     
@@ -154,10 +154,4 @@ with gr.Blocks() as demo:
 if __name__ == "__main__":
     # On Hugging Face Spaces, server_name="0.0.0.0" and server_port=7860 are essential.
     # Disabling ssr_mode and explicitly setting share=False to avoid connectivity checks.
-    demo.launch(
-        server_name="0.0.0.0", 
-        server_port=7860, 
-        share=False, 
-        ssr_mode=False,
-        theme=gr.themes.Soft()
-    )
+    demo.launch()
