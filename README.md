@@ -1,3 +1,16 @@
+---
+title: AlertDrive AI
+emoji: 🚗
+colorFrom: blue
+colorTo: red
+sdk: gradio
+sdk_version: 5.0.1
+app_file: app.py
+pinned: false
+license: mit
+python_version: 3.11
+---
+
 # AlertDrive AI: Advanced Driver Monitoring System (DMS) 🚗💤
 
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)

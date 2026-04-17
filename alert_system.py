@@ -15,13 +15,15 @@ class AlertSystem:
             print(f"Warning: Could not initialize audio mixer ({e}). Sound alerts will be disabled.")
             self.audio_enabled = False
 
-        self.alert_sound_path = os.path.join('alerts', 'alert.wav')
-        
-        if self.audio_enabled and os.path.exists(self.alert_sound_path):
-            self.alert_sound = pygame.mixer.Sound(self.alert_sound_path)
+        if self.audio_enabled:
+            self.alert_sound_path = os.path.join('alerts', 'alert.wav')
+            if os.path.exists(self.alert_sound_path):
+                self.alert_sound = pygame.mixer.Sound(self.alert_sound_path)
+            else:
+                self.alert_sound = None
+                print(f"Warning: {self.alert_sound_path} not found. Audio alerts will be disabled.")
         else:
             self.alert_sound = None
-            print(f"Warning: {self.alert_sound_path} not found. Please add alert.wav to the alerts folder.")
 
         # Warning messages for DROWSY state
         self.drowsy_messages = [
